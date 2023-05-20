@@ -1,0 +1,93 @@
+:root {
+  --dark-slate-gray: #2a4747ff;
+  --mint-green: #d0fef5ff;
+  --redwood: #a76d60;
+  --eggplant: #4c2b36ff;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10%;
+
+  background-color: var(--dark-slate-gray);
+}
+
+.loginDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: var(--mint-green);
+  border-radius: 10%;
+  margin: 0.15rem 0.2rem;
+  padding: 2.5rem;
+}
+
+.loginItem {
+  margin: 0.2rem;
+  font-family: Helvetica, sans-serif;
+  position: relative;
+}
+
+.loginText {
+  padding: 0.5rem;
+
+  font-size: 54px;
+  font-weight: bold;
+}
+
+.inputClass {
+  padding: 2%;
+  width: fit-content;
+  padding-right: 0;
+}
+
+#subBtn {
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  border: 10px solid var(--redwood);
+  background-color: var(--redwood);
+  border-radius: 1rem;
+  font-size: large;
+  color: var(--eggplant);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#userPosts {
+  list-style-type: none;
+}
+
+.title {
+  font-size: x-large;
+  color: var(--redwood);
+  text-transform: capitalize;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.textBody {
+  font-size: large;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: var(--mint-green);
+}
+
+/* shake animation stuff */
+
+@keyframes shake {
+  0% {
+    transform: translateX(3px);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
