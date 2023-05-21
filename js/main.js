@@ -9,20 +9,16 @@ function loginLoader() {
     .then(getResponse)
     .then((json) => {
       btnPost.addEventListener("click", () => {
-        localStorage.setItem("username", uNameInput.value); //save username
-        localStorage.setItem("email", uEmailInput.value); //save password
-        findUser(json); //get response, convert to json, find the right user
+        findUser(json, uNameInput.value, uEmailInput.value); //get response, convert to json, find the right user
       });
     });
 }
 
-const findUser = (receivedJson) => {
+const findUser = (receivedJson, username, email) => {
   //find user in json
-  var username = localStorage.getItem("username");
-  var email = localStorage.getItem("email");
   var assignedId = -1;
   receivedJson.forEach((element) => {
-    if (username == element.username && email == element.email) {
+    if (username === element.username && email === element.email) {
       //if you found the right user, proceed with Success function, and if no user found, do Fail function
       assignedId = element.id;
       localStorage.setItem("userFetchedName", element.username); //save title for later
