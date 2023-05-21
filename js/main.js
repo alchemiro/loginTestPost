@@ -5,26 +5,31 @@ const uNameInput = document.getElementById("uNameInput"); //get Username Input
 const uEmailInput = document.getElementById("uEmailInput"); // get Email Input
 
 function loginLoader() {
-  btnPost.addEventListener("click", () => {
-    localStorage.setItem("username", uNameInput.value); //save username
-    localStorage.setItem("email", uEmailInput.value); //save password
-    fetch(userURL).then(getResponse).then(findUser); //get response, convert to json, find the right user
-  });
+  fetch(userURL)
+    .then(getResponse)
+    .then((json) => {
+      btnPost.addEventListener("click", () => {
+        localStorage.setItem("username", uNameInput.value); //save username
+        localStorage.setItem("email", uEmailInput.value); //save password
+        findUser(json); //get response, convert to json, find the right user
+      });
+    });
 }
 
-const findUser = (json) => {
+const findUser = (receivedJson) => {
   //find user in json
   var username = localStorage.getItem("username");
   var email = localStorage.getItem("email");
   var assignedId = -1;
-  json.forEach((element) => {
-    if (username === element.username && email === element.email) {
+  receivedJson.forEach((element) => {
+    if (username == element.username && email == element.email) {
       //if you found the right user, proceed with Success function, and if no user found, do Fail function
       assignedId = element.id;
       localStorage.setItem("userFetchedName", element.username); //save title for later
       console.log("found user!");
     }
   });
+
   if (assignedId == -1) {
     //didn't find user
     var divver = document.getElementById("loginDivver");
