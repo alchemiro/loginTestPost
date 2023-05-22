@@ -44,7 +44,7 @@ const findUser = (receivedJson, username, email) => {
   }
 };
 
-function successFunc() {
+function successFunc(id) {
   console.log("success");
   //found user
   localStorage.setItem(
