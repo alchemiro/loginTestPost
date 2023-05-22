@@ -36,6 +36,8 @@ body {
 .loginText {
   padding: 0.5rem;
 
+  color: #252525;
+
   font-size: 54px;
   font-weight: bold;
 }
@@ -52,6 +54,7 @@ body {
   margin-top: 1rem;
   margin-bottom: 0;
   color: rgb(100, 17, 17);
+  transition: 0.2s;
 }
 
 #subBtn {

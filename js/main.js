@@ -9,6 +9,7 @@ function loginLoader() {
     .then(getResponse)
     .then((json) => {
       btnPost.addEventListener("click", () => {
+        console.log("clicked");
         findUser(json, uNameInput.value, uEmailInput.value); //get response, convert to json, find the right user
       });
     });
@@ -16,7 +17,7 @@ function loginLoader() {
 
 const findUser = (receivedJson, username, email) => {
   //find user in json
-  var assignedId = -1;
+  let assignedId = -1;
   receivedJson.forEach((element) => {
     if (username === element.username && email === element.email) {
       //if you found the right user, proceed with Success function, and if no user found, do Fail function
@@ -27,22 +28,37 @@ const findUser = (receivedJson, username, email) => {
   });
 
   if (assignedId == -1) {
+    console.log("fail");
     //didn't find user
-    var divver = document.getElementById("loginDivver");
-    divver.style.animation = "shake 0.5s"; //shake the login page to sign failed
+    const timeOfAnimation = 500;
+    let header = document.getElementById("loginText");
+    let divver = document.getElementById("loginDivver");
+    divver.style.animation = `shake ${timeOfAnimation / 1000}s`; //shake the login page to sign failed
+    header.style.color = "rgb(100, 17, 17)";
+    setTimeout(() => {
+      divver.style.animation = "none";
+      header.style.color = "#252525";
+    }, timeOfAnimation);
   } else {
-    //found user
-    localStorage.setItem(
-      "UserIDURL",
-      `https://jsonplaceholder.typicode.com/posts?userId=${assignedId}`
-    );
-    window.location.replace(postFetchPage); //move and fetch posts
+    successFunc(assignedId);
   }
 };
 
+function successFunc() {
+  console.log("success");
+  //found user
+  localStorage.setItem(
+    "UserIDURL",
+    `https://jsonplaceholder.typicode.com/posts?userId=${id}`
+  );
+  window.location.replace(postFetchPage); //move and fetch posts
+}
+
+function failFunc() {}
+
 function postLoader() {
   //once we've gone to the post page
-  var assignedIDURL = localStorage.getItem("UserIDURL"); //get the user url
+  const assignedIDURL = localStorage.getItem("UserIDURL"); //get the user url
   fetch(assignedIDURL).then(getResponse).then(processJson); //add the stuff
 }
 const getResponse = (response) => {
@@ -53,7 +69,7 @@ const getResponse = (response) => {
 const processJson = (json) => {
   //add to html
   output = ``;
-  var userName = localStorage.getItem("userFetchedName");
+  const userName = localStorage.getItem("userFetchedName");
   json.forEach((element) => {
     console.log(element);
 
