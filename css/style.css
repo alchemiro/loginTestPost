@@ -18,11 +18,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation-iteration-count: 1;
 
   background-color: var(--mint-green);
   border-radius: 10%;
   margin: 0.15rem 0.2rem;
   padding: 2.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .loginItem {
@@ -42,6 +44,14 @@ body {
   padding: 2%;
   width: fit-content;
   padding-right: 0;
+}
+
+.failedLoginText {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: rgb(100, 17, 17);
 }
 
 #subBtn {
@@ -85,9 +95,9 @@ body {
     transform: translateX(-3px);
   }
   50% {
-    transform: translateX(2px);
+    transform: translateX(3px);
   }
   100% {
-    transform: translateX(2px);
+    transform: translateX(-3px);
   }
 }
